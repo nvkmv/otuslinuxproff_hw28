@@ -13,6 +13,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "backup" do |backup|
     backup.vm.network "private_network", ip: "192.168.11.160", virtualbox__intnet: "net1"
     backup.vm.hostname = "backup"
+    backup.vm.synced_folder "./data", "/home/vagrant/data"
     backup.vm.provider "virtualbox" do |vb|
       unless File.exist?('./storage/backup.vdi')
             vb.customize ['createhd', '--filename', './storage/backup.vdi', '--variant', 'Fixed', '--size', 2176]
@@ -25,5 +26,6 @@ Vagrant.configure(2) do |config|
   config.vm.define "client" do |client|
     client.vm.network "private_network", ip: "192.168.11.150", virtualbox__intnet: "net1"
     client.vm.hostname = "client"
+    client.vm.synced_folder "./data", "/home/vagrant/data"
   end
 end
