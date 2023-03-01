@@ -1,0 +1,9 @@
+---
+- name: play backup
+  hosts: backup
+  become: true
+  roles:
+    - install_borgbackup
+    - config_backup
+
+  

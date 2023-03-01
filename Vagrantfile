@@ -7,11 +7,11 @@ Vagrant.configure(2) do |config|
   #  ansible.become = "true"
   #end
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2096
+    v.memory = 1024
     v.cpus = 1
   end
   config.vm.define "backup" do |backup|
-    backup.vm.network "private_network", ip: "192.168.11.160", virtualbox__intnet: "net1"
+    backup.vm.network "public_network", ip: "192.168.1.66"
     backup.vm.hostname = "backup"
     backup.vm.synced_folder "./data", "/home/vagrant/data"
     backup.vm.provider "virtualbox" do |vb|
@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "client" do |client|
-    client.vm.network "private_network", ip: "192.168.11.150", virtualbox__intnet: "net1"
+    client.vm.network "public_network", ip: "192.168.1.67"
     client.vm.hostname = "client"
     client.vm.synced_folder "./data", "/home/vagrant/data"
   end

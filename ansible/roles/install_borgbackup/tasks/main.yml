@@ -1,0 +1,5 @@
+---
+- name: install_borgbackup
+  dnf: 
+    name: borgbackup
+    state: latest

@@ -1,0 +1,6 @@
+---
+- name: add ssh key
+  authorized_key:
+    user: borg
+    state: present
+    key: "{{ lookup('file', 'files/id_rsa.pub')}}"

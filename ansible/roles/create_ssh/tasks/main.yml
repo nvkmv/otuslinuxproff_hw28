@@ -1,0 +1,22 @@
+---
+- name: create ssh keys
+  openssh_keypair:
+    path: "/home/vagrant/.ssh/id_rsa"
+    type: rsa
+    state: present
+    force: no
+
+- name: Fetch the keyfile from the node to master
+  fetch: 
+    src: "~/.ssh/id_rsa.pub"
+    dest: "./roles/config_backup/templates/"
+    flat: yes
+  become: no
+
+#- name: Copy the key add to authorized_keys using Ansible module
+#  authorized_key:
+#   user: borg
+#   state: present
+#    key: "{{ lookup('file','buffer/{{item}}-id_rsa.pub')}}"
+#    when: "{{ item != ansible_hostname }}"
+  
