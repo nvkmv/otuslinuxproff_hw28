@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     v.cpus = 1
   end
   config.vm.define "backup" do |backup|
-    backup.vm.network "public_network", ip: "192.168.1.66"
+    backup.vm.network "public_network", ip: "192.168.1.66", bridge: "wlp0s20f3"
     backup.vm.hostname = "backup"
     backup.vm.synced_folder "./data", "/home/vagrant/data"
     backup.vm.provider "virtualbox" do |vb|
@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
     end
   end
   config.vm.define "client" do |client|
-    client.vm.network "public_network", ip: "192.168.1.67"
+    client.vm.network "public_network", ip: "192.168.1.67", bridge: "wlp0s20f3"
     client.vm.hostname = "client"
     client.vm.synced_folder "./data", "/home/vagrant/data"
   end

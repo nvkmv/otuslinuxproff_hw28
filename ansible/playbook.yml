@@ -1,5 +1,5 @@
 ---
-- name: play backup
+- name: play config backup
   hosts: backup
   become: true
   roles:
@@ -7,3 +7,16 @@
     - config_backup
 
   
+- name: play config client
+  hosts: client
+  become: true
+  roles:
+    - install_borgbackup
+    - create_ssh
+
+
+- name: copy to backup ssh key
+  hosts: backup
+  become: true
+  roles:
+    - add_ssh
