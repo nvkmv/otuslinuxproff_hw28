@@ -2,3 +2,4 @@
 storage/
 data/
 ansible/roles/add_ssh/files/id_rsa.pub/
+ansible/roles/add_ssh/files/

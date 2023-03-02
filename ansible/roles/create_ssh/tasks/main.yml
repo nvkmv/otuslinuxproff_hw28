@@ -14,3 +14,11 @@
     dest: "./roles/add_ssh/files/"
     flat: yes
   become: no
+
+- name: template ssh user config
+  template:
+    src: templates/config
+    dest: /home/vagrant/.ssh/
+    owner: vagrant
+    mode: "0400"
+  become: no

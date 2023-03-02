@@ -13,14 +13,6 @@
     group: root
     mode: "0644"
 
-#- name: template ssh user config
-#  template:
-#    src: templates/config
-#    dest: /home/vagrant/.ssh/
-#    owner: vagrant
-#    mode: "0400"
-#  become: no
-
 - name: restart sshd
   systemd:
     name: sshd
