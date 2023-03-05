@@ -30,3 +30,9 @@
   roles:
     - add_ssh
   
+- name: 
+  hosts: client
+  become: true
+  roles:
+    - run_backup
+    

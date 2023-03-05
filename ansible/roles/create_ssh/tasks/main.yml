@@ -1,24 +1,31 @@
 ---
+- name: make dir for root ssh
+  file:
+    path: /root/.ssh
+    state: directory
+    owner: root
+    group: root
+    mode: "0700"
+
 - name: create ssh keys
   openssh_keypair:
-    path: "/home/vagrant/.ssh/id_rsa"
+    path: "/root/.ssh/id_rsa"
     type: rsa
-    owner: vagrant
-    group: vagrant
+    owner: root
+    group: root
     state: present
     force: no
     
 - name: copy pub ssh key from the client node to master
   fetch: 
-    src: "~/.ssh/id_rsa.pub"
+    src: "/root/.ssh/id_rsa.pub"
     dest: "./roles/add_ssh/files/"
     flat: yes
-  become: no
 
 - name: template ssh user config
   template:
     src: templates/config
-    dest: /home/vagrant/.ssh/
-    owner: vagrant
+    dest: /root/.ssh/
+    owner: root
     mode: "0400"
-  become: no
+  #become: no
