@@ -1,0 +1,27 @@
+---
+- name: borgbackup init repo
+  shell:
+    cmd: borg init -e=none borg@192.168.56.66:/var/backup
+  ignore_errors: yes
+
+- name: template systemd units borg
+  template:
+    src: templates/borg-backup.service
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: template systemd units borg
+  template:
+    src: templates/borg-backup.timer
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: "0644"    
+
+- name: start systemd timer   
+  systemd: 
+    name: borg-backup.timer
+    enabled: yes
+    state: started

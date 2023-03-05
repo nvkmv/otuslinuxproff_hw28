@@ -1,0 +1,38 @@
+---
+- name: set timezone Moscow
+  hosts: all
+  become: true
+  pre_tasks:
+    - name:
+      timezone:
+        name: Europe/Moscow
+  
+
+- name: play config backup
+  hosts: backup
+  become: true
+  roles:
+    - install_borgbackup
+    - config_backup
+
+  
+- name: play config client
+  hosts: client
+  become: true
+  roles:
+    - install_borgbackup
+    - create_ssh
+
+
+- name: copy to backup ssh key
+  hosts: backup
+  become: true
+  roles:
+    - add_ssh
+  
+- name: 
+  hosts: client
+  become: true
+  roles:
+    - run_backup
+    
