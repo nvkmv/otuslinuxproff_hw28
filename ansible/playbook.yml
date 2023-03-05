@@ -1,4 +1,13 @@
 ---
+- name: set timezone Moscow
+  hosts: all
+  become: true
+  pre_tasks:
+    - name:
+      timezone:
+        name: Europe/Moscow
+  
+
 - name: play config backup
   hosts: backup
   become: true
@@ -20,3 +29,4 @@
   become: true
   roles:
     - add_ssh
+  

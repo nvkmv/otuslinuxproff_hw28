@@ -3,15 +3,8 @@
   user:
     name: borg
     createhome: yes
-    state: present
+    state: present    
     
-- name: create dir for backup
-  file:
-    path: /var/backup
-    state: directory
-    owner: borg
-    group: borg
-
 - name: create ssh dir
   file:
     path: /home/borg/.ssh
@@ -35,3 +28,13 @@
     src: /dev/sdb
     state: mounted
     fstype: xfs
+
+- name: create dir for backup
+  file:
+    path: /var/backup/
+    state: directory
+    owner: borg
+    group: borg
+    access_time: now
+    modification_time: now    
+
