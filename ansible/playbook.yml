@@ -3,7 +3,7 @@
   hosts: all
   become: true
   pre_tasks:
-    - name:
+    - name: set timezone
       timezone:
         name: Europe/Moscow
   
@@ -30,7 +30,7 @@
   roles:
     - add_ssh
   
-- name: 
+- name: run backup
   hosts: client
   become: true
   roles:
