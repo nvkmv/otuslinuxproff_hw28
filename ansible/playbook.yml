@@ -36,3 +36,11 @@
   roles:
     - run_backup
     
+- name: check borgbackup
+  hosts: client
+  become: true
+  post_tasks:
+    - name: show repo
+      debug:
+        var: result.stdout_lines
+

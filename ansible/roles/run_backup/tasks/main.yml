@@ -2,7 +2,7 @@
 - name: borgbackup init repo
   shell:
     cmd: borg init -e=none borg@192.168.56.66:/var/backup
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: template systemd units borg
   template:
@@ -27,7 +27,13 @@
     state: started
     daemon_reload: yes
 
-- name: restart borg-backup.service #пока его не дернуть таймер не запускается, хз по чему
-  systemd:
-    name: borg-backup.service
-    state: restarted
+#- name: restart borg-backup.service #пока его не дернуть таймер не запускается, хз по чему
+#  systemd:
+#    name: borg-backup.service
+#    state: restarted
+#  ignore_errors: true
+
+- name: list backup
+  shell:
+    cmd: borg list borg@192.168.56.66:/var/backup
+  register: result
