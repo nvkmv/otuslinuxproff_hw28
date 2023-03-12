@@ -10,3 +10,8 @@
 
 ## Восстановление 
 Восстанавливать из резервной копии можно полностью деректорию путем копирования прим.: ``` borg extract /path/to/repo::my-files ``` или монтирования в указаную точку прим.: ```borg mount /path/to/repo /tmp/mymountpoint```. Также можно восстановить отдельный файл прим.: ``` borg extract /path/to/repo::etc etc/hosts```
+
+
+```screen:```
+
+![Screenshot_20230312_180505](https://user-images.githubusercontent.com/59445051/224553499-83363160-f29f-4fce-8186-1598191d5ecf.png)
