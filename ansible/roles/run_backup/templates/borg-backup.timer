@@ -2,7 +2,7 @@
 Description=Borg backup
 
 [Timer]
-OnUnitActiveSec=60
+OnUnitActiveSec=5m
 
 [Install]
 WantedBy=timers.target

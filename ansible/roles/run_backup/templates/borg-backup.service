@@ -16,7 +16,7 @@ ExecStart=/bin/borg check ${REPO}
 
 ExecStart=/bin/borg prune \
     --keep-daily  90      \
-    --keep-monthly 12     \
+    --keep-monthly 9     \
     --keep-yearly  1      \
     ${REPO}
 

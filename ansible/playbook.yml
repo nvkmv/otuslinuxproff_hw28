@@ -21,7 +21,7 @@
   become: true
   roles:
     - install_borgbackup
-    - create_ssh
+    - config_client
 
 
 - name: copy to backup ssh key
